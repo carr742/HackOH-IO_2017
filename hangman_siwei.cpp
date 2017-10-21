@@ -3,18 +3,37 @@
 #include <math.h>
 #include <iostream>
 #include <string>
+#include <array>
 
 int main() {
-	//Start the word and blank character arrays
+	//Word to guess
 
-	char word[] = "potato";
-	char blank[] = "______";
-	printf("Six letter word");
+	char word[] = "";
+	printf("Please enter a word to guess: ");
+	scanf("%s", word);
+
+	//Length of string
+	int length;
+	length = strlen(word);
+	printf("The mystery word has %d letters.", length);
+
+	//Create blank with length number of underscores
+	char blank[] = "";
+	int t;
+
+	for (t = 0; t < length; t++) {
+		blank[t] = '_';
+	}
 	
-	//Set guesses to 10 and intialize variables
+	//How many guesses?
+	int guess, k, correct;
 
-	int guess = 10, k, correct;
+	printf("\nHow many guesses will you get? ");
+	scanf("%d", &guess);
+	
 	char letter;
+
+	system("CLS");						//Clear the screen so the player can't see the word lol
 	
 	//Guessing loop
 
@@ -33,7 +52,7 @@ int main() {
 
 		//See if letter is part of word array over a loop
 
-		for (k = 0; k <= 6; k++) {
+		for (k = 0; k <= length; k++) {
 			//Testing each individual element
 
 			if (word[k] == letter) {
@@ -56,13 +75,13 @@ int main() {
 
 		//If user has finished guessing the word
 		int finish = 0;
-		for (k = 0; k < 6; k++) {
+		for (k = 0; k < length; k++) {
 			if (word[k] == '_') {
 				finish++;
 			}
 		}
 
-		if (finish == 6) {
+		if (finish == length) {
 			correct = 2;
 			break;
 		}
@@ -70,7 +89,7 @@ int main() {
 
 	}
 	if (correct == 2) {						//Word is guessed correctly
-		printf("\nCongrats on guessing the word!");
+		printf("\nCongrats on guessing the word: %s!\n", blank);
 	}
 	else {
 		printf("\nYou are out of guesses!");	//Ran out of guesses
