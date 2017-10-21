@@ -1,1 +1,108 @@
-#what am i doing
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <iostream>
+#include <string.h>
+
+//need to include check to see if letter already taken
+//maybe put the whole thing in a turn counter, create an array of guesses?
+
+int main() {
+    
+    //initialize a word
+    char word[6] = {'p','o','t','a','t','o',};
+    
+    //initialize blank word
+    char blank[6] = {'_','_','_','_','_','_'};
+    
+    //initialize lives
+    int lives = 6;
+    
+    //initialize char variable
+    char letter;
+    int counter = 0;
+    
+    //**************************************************//
+    
+    //main body of the game
+    while (lives > 0 || counter != 0)
+    {
+        //get a letter from the user
+        printf("Guess a letter, lowercase only: ");
+        scanf("%c", &letter);
+        
+        if (letter == '\n')
+        {
+            
+            printf("\n");
+            printf("Guess another letter, lowercase only: ");
+            scanf("%c", &letter);
+        }
+        
+        
+        //check if letter is in word
+        int i;
+        for (i=0;i<6;i++)       //this seems to determine if a life is lost or not
+        {
+            //iterate over loop
+            //compare letter to each letter in the loop
+            if (letter == word[i])
+            {
+                
+                //if letter is in word, print guess was correct
+                printf("Your guess was correct!\n");
+            
+                //change blank to include the correct letter
+                blank[i] = letter;
+                word[i] = '_';
+            
+                //print the blanks with guessed letter
+                printf("%c %c %c %c %c %c\n",blank[0],blank[1],blank[2],blank[3],blank[4],blank[5]);
+                printf("%c %c %c %c %c %c\n",word[0],word[1],word[2],word[3],word[4],word[5]);
+                
+                //break program
+                break;
+            }
+        }
+        
+        //if letter wasn't in the work
+        if (i == 5)
+        {
+            //print guess incorrect
+            printf("Sorry, your guess was incorrect\n");
+            //lives = lives - 1
+            printf("Lives: %i\n", lives=lives-1);
+        }
+        
+        //condition to see if the game has been won
+        
+        //initialize counter variable
+        counter = 0;
+        
+        for (int j=0;j<6;j++)
+        {
+            //iterate through blank loop to see if any blank spaces. If no blank spaces, user has won the game.
+            //if statement to create a counter for the number of blank spaces. If above zero, can't exit the loop
+            
+            //add one to the counter
+            if (blank[j]=='_')
+            {
+                counter++;
+            }
+        }
+        
+    }
+    
+//**************************************************//
+    
+    //win conidtion
+    if (lives == 0)
+    {
+        printf("Sorry, you lost the game!\n");
+    }
+    else {
+        printf("You won the game!");
+    }
+    
+    return 0;
+}
