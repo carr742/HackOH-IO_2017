@@ -1,0 +1,8 @@
+string blank = string(word.length(), '_');
+
+	for (size_t n = 0, nend = min(word.length(), guess.length()); n < nend; n++) {
+		if (word[n] = guess[n]) {
+			blank[n] = word[n];
+		}
+		else
+			incorrect++;
