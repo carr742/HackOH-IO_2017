@@ -5,7 +5,7 @@
 #include <string>
 #include <array>
 #include <climits>
-#include  <cstdlib>
+#include <cstdlib>
 
 //need to include check to see if letter already taken
 //maybe put the whole thing in a turn counter, create an array of guesses?
@@ -58,26 +58,26 @@ int main() {
     }
 
     //get a random number between 0 and 4
-    int r;
-    r = (rand() % 4) + 1;
+    int r = (rand()%4)+1;
     
     std::string answer;
     
+    //switch case to assign a string
     switch (r)
     {
-        case 1:
+        case 0:
             answer=first;
             break;
-        case 2:
+        case 1:
             answer=second;
             break;
-        case 3:
+        case 2:
             answer=third;
             break;
-        case 4:
+        case 3:
             answer=fourth;
             break;
-        case 5:
+        case 4:
             answer=fifth;
             break;
         default:
@@ -154,6 +154,54 @@ int main() {
             //print guess incorrect
             printf("Sorry, your guess was incorrect\n");
             lives--;
+            
+            switch (lives)
+            {
+               case 5:
+                    printf("T----\n");
+                    printf("|   |\n");
+                    printf("|   O\n");
+                    printf("|  \n");
+                    printf("|  \n");
+                    printf("|   \n");
+                    break;
+                case 4:
+                    printf("T----\n");
+                    printf("|   |\n");
+                    printf("|   O\n");
+                    printf("|   |\n");
+                    printf("|    \n");
+                    printf("|    \n");
+                    break;
+                case 3:
+                    printf("T----\n");
+                    printf("|   |\n");
+                    printf("|   O\n");
+                    printf("|   |\\ \n");
+                    printf("|   \n");
+                    printf("|    \n");
+                    break;
+                case 2:
+                    printf("T----\n");
+                    printf("|   |\n");
+                    printf("|   O\n");
+                    printf("|  /|\\ \n");
+                    printf("|    \n");
+                    printf("|    \n");
+                    break;
+                case 1:
+                    printf("T----\n");
+                    printf("|   |\n");
+                    printf("|   O\n");
+                    printf("|  /|\\ \n");
+                    printf("|  / \n");
+                    printf("|    \n");
+                    break;
+                default:
+                    break;
+            }
+        
+            
         }
         
         //condition to see if the game has been won
@@ -176,52 +224,7 @@ int main() {
         {
             break;
         }
-    
-    //PICTURES
-    if (lives == 5) {
-        printf("T----\n");
-        printf("|   |\n");
-        printf("|   O\n");
-        printf("|  \n");
-        printf("|  \n");
-        printf("|   \n");
-    }
-    
-    else if (lives == 4) {
-        printf("T----\n");
-        printf("|   |\n");
-        printf("|   O\n");
-        printf("|   |\n");
-        printf("|    \n");
-        printf("|    \n");
-    }
-    
-    else if (lives == 3) {
-        printf("T----\n");
-        printf("|   |\n");
-        printf("|   O\n");
-        printf("|   |\\ \n");
-        printf("|   \n");
-        printf("|    \n");
-    }
-    
-    else if (lives == 2) {
-        printf("T----\n");
-        printf("|   |\n");
-        printf("|   O\n");
-        printf("|  /|\\ \n");
-        printf("|    \n");
-        printf("|    \n");
-    }
-    
-    else if (lives == 1) {
-        printf("T----\n");
-        printf("|   |\n");
-        printf("|   O\n");
-        printf("|  /|\\ \n");
-        printf("|  / \n");
-        printf("|    \n");
-    }
+
     }
     while ((lives > 0) || (counter > 0));
     
