@@ -8,7 +8,7 @@
 //maybe put the whole thing in a turn counter, create an array of guesses?
 
 int main() {
-    
+
     //initialize a word
     char word[6] = {'p','o','t','a','t','o',};
     
@@ -25,20 +25,11 @@ int main() {
     //**************************************************//
     
     //main body of the game
-    while (lives > 0 || counter != 0)
+    do
     {
         //get a letter from the user
         printf("Guess a letter, lowercase only: ");
-        scanf("%c", &letter);
-        
-        if (letter == '\n')
-        {
-            
-            printf("\n");
-            printf("Guess another letter, lowercase only: ");
-            scanf("%c", &letter);
-        }
-        
+        scanf(" %c", &letter);
         
         //check if letter is in word
         int i;
@@ -58,7 +49,6 @@ int main() {
             
                 //print the blanks with guessed letter
                 printf("%c %c %c %c %c %c\n",blank[0],blank[1],blank[2],blank[3],blank[4],blank[5]);
-                printf("%c %c %c %c %c %c\n",word[0],word[1],word[2],word[3],word[4],word[5]);
                 
                 //break program
                 break;
@@ -66,7 +56,7 @@ int main() {
         }
         
         //if letter wasn't in the work
-        if (i == 5)
+        if (i == 6)
         {
             //print guess incorrect
             printf("Sorry, your guess was incorrect\n");
@@ -75,23 +65,27 @@ int main() {
         }
         
         //condition to see if the game has been won
-        
         //initialize counter variable
         counter = 0;
-        
         for (int j=0;j<6;j++)
         {
             //iterate through blank loop to see if any blank spaces. If no blank spaces, user has won the game.
             //if statement to create a counter for the number of blank spaces. If above zero, can't exit the loop
             
             //add one to the counter
-            if (blank[j]=='_')
+            if (blank[j] == '_')
             {
                 counter++;
             }
         }
         
+        //if the blank space counter is 0 or lives is 0, exit the program
+        if (counter == 0 || lives == 0)
+        {
+            break;
+        }
     }
+    while ((lives > 0) || (counter > 0));
     
 //**************************************************//
     
@@ -101,7 +95,7 @@ int main() {
         printf("Sorry, you lost the game!\n");
     }
     else {
-        printf("You won the game!");
+        printf("You won the game!\n");
     }
     
     return 0;
