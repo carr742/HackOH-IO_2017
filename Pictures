@@ -1,0 +1,56 @@
+if (incorrect == 1) {
+		cout << "T----" << endl;
+		cout << "|   | "  << endl;
+		cout << "|   O " << endl;
+		cout << "|     "<< endl;
+		cout << "|     " << endl;
+		cout << "|    " << endl;
+	}
+
+	else if (incorrect == 2) {
+		cout << "T----" << endl;
+		cout << "|   |" << endl;
+		cout << "|   O " << endl;
+		cout << "|   | " << endl;
+		cout << "|      " << endl;
+		cout << "|    " << endl;
+	}
+
+	else if (incorrect == 3) {
+		cout << "T----" << endl;
+		cout << "|   |" << endl;
+		cout << "|   O " << endl;
+		cout << "|  /| " << endl;
+		cout << "|     " << endl;
+		cout << "|    " << endl;
+	}
+
+	else if (incorrect == 4) {
+		cout << "T----" << endl;
+		cout << "|   |" << endl;
+		cout << "|   O " << endl;
+		cout << "|  /|\ " << endl;
+		cout << "|     " << endl;
+		cout << "|     " << endl;
+	}
+
+	else if (incorrect == 5) {
+		cout << "T----" << endl;
+		cout << "|   |" << endl;
+		cout << "|   O " << endl;
+		cout << "|  /|\ " << endl;
+		cout << "|  / " << endl;
+		cout << "|    " << endl;
+	}
+
+	else if (incorrect == 6) {
+		cout << "T----" << endl;
+		cout << "|   |" << endl;
+		cout << "|   O " << endl;
+		cout << "|  /|\ " << endl;
+		cout << "|  // " << endl;
+		cout << "|    " << endl;
+		cout << "|   YOU DIED" << endl;
+
+		cout << "You lose! The word was" << word << "!";
+	}
