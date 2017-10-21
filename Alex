@@ -5,6 +5,7 @@
 #include <string>
 #include <array>
 #include <climits>
+#include  <cstdlib>
 
 //need to include check to see if letter already taken
 //maybe put the whole thing in a turn counter, create an array of guesses?
@@ -57,25 +58,26 @@ int main() {
     }
 
     //get a random number between 0 and 4
-    int r = rand() % 4;
+    int r;
+    r = (rand() % 4) + 1;
     
     std::string answer;
     
     switch (r)
     {
-        case 0:
+        case 1:
             answer=first;
             break;
-        case 1:
+        case 2:
             answer=second;
             break;
-        case 2:
+        case 3:
             answer=third;
             break;
-        case 3:
+        case 4:
             answer=fourth;
             break;
-        case 4:
+        case 5:
             answer=fifth;
             break;
         default:
@@ -87,8 +89,6 @@ int main() {
     
     //define char arrays of size the length of the random word
     char blank[length];
-    
-    //char answer[length] = array[r];
     
     //make a string of characters for the answer
     for (int k=0;k<length;k++)
@@ -126,8 +126,16 @@ int main() {
             
                 //change blank to include the correct letter
                 blank[i] = letter;
-                answer[i] = '_';
-            
+                
+                //check to see if there are more than 1 copy of the letter in the program. Only works if there are 2 copies of the same letter in the word.
+                for (int z=i;z<length;z++)
+                {
+                    if (letter == answer[z])
+                    {
+                       blank[z] = letter;
+                    }
+                }
+                
                 //print the blanks with guessed letter
                 for (r=0;r<length;r++)
                 {
@@ -145,8 +153,7 @@ int main() {
         {
             //print guess incorrect
             printf("Sorry, your guess was incorrect\n");
-            //lives = lives - 1
-            printf("Lives: %i\n", lives=lives-1);
+            lives--;
         }
         
         //condition to see if the game has been won
@@ -169,6 +176,52 @@ int main() {
         {
             break;
         }
+    
+    //PICTURES
+    if (lives == 5) {
+        printf("T----\n");
+        printf("|   |\n");
+        printf("|   O\n");
+        printf("|  \n");
+        printf("|  \n");
+        printf("|   \n");
+    }
+    
+    else if (lives == 4) {
+        printf("T----\n");
+        printf("|   |\n");
+        printf("|   O\n");
+        printf("|   |\n");
+        printf("|    \n");
+        printf("|    \n");
+    }
+    
+    else if (lives == 3) {
+        printf("T----\n");
+        printf("|   |\n");
+        printf("|   O\n");
+        printf("|   |\\ \n");
+        printf("|   \n");
+        printf("|    \n");
+    }
+    
+    else if (lives == 2) {
+        printf("T----\n");
+        printf("|   |\n");
+        printf("|   O\n");
+        printf("|  /|\\ \n");
+        printf("|    \n");
+        printf("|    \n");
+    }
+    
+    else if (lives == 1) {
+        printf("T----\n");
+        printf("|   |\n");
+        printf("|   O\n");
+        printf("|  /|\\ \n");
+        printf("|  / \n");
+        printf("|    \n");
+    }
     }
     while ((lives > 0) || (counter > 0));
     
@@ -177,8 +230,14 @@ int main() {
     //win conidtion
     if (lives == 0)
     {
+        printf("T----\n");
+        printf("|   |\n");
+        printf("|   O\n");
+        printf("|  /|\\ \n");
+        printf("|  // \n");
+        printf("|    \n");
         printf("Sorry, you lost the game!\n");
-        printf("The word was");
+        printf("The word was ");
         for (int i = 0; i < length; i++)
         {
             printf("%c",answer[i]);
@@ -191,3 +250,4 @@ int main() {
     
     return 0;
 }
+  
