@@ -2,42 +2,123 @@
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
-#include <string.h>
+#include <string>
+#include <array>
+#include <climits>
 
 //need to include check to see if letter already taken
 //maybe put the whole thing in a turn counter, create an array of guesses?
 
+//this takes input in from the command line
 int main() {
 
-    //initialize a word
-    char word[6] = {'p','o','t','a','t','o',};
+    //welcome
+    printf("Welcome to hangman! Select the number for the category which you want to play: \n");
+    printf("1 = sports\n");
+    printf("2 = animals\n");
+    printf("3 = countries\n");
+    printf("Input: ");
     
-    //initialize blank word
-    char blank[6] = {'_','_','_','_','_','_'};
+    //scan in a category value
+    int category;
+    scanf(" %i", &category);
     
-    //initialize lives
-    int lives = 6;
+    std::string first, second, third, fourth, fifth;
+    
+    //if-else-if statement to define string array for words
+    if (category == 1)
+    {
+        first="soccer";
+        second="basketball";
+        third="tennis";
+        fourth="badminton";
+        fifth="volleyball";
+    }
+    else if (category == 2)
+    {
+        first="tiger";
+        second="walrus";
+        third="penguin";
+        fourth="cheetah";
+        fifth="gorilla";
+    }
+    else if (category == 3)
+    {
+        first="england";
+        second="afghanistan";
+        third="austrailia";
+        fourth="taiwan";
+        fifth="algeria";
+    }
+    else
+    {
+        printf("Error: Input not one of the valid categories. Run the program again with either a 1, 2, or 3.\n");
+        return 1;
+    }
+
+    //get a random number between 0 and 4
+    int r = rand() % 4;
+    
+    std::string answer;
+    
+    switch (r)
+    {
+        case 0:
+            answer=first;
+            break;
+        case 1:
+            answer=second;
+            break;
+        case 2:
+            answer=third;
+            break;
+        case 3:
+            answer=fourth;
+            break;
+        case 4:
+            answer=fifth;
+            break;
+        default:
+            break;
+    }
+    
+    //get the length of the string, converting it from unsigned long to int
+    int length = answer.length();
+    
+    //define char arrays of size the length of the random word
+    char blank[length];
+    
+    //char answer[length] = array[r];
+    
+    //make a string of characters for the answer
+    for (int k=0;k<length;k++)
+    {
+        blank[k] = '_';
+    }
     
     //initialize char variable
     char letter;
     int counter = 0;
+    int lives = 6;
     
     //**************************************************//
     
     //main body of the game
+    
     do
     {
         //get a letter from the user
+        printf("\n");
         printf("Guess a letter, lowercase only: ");
         scanf(" %c", &letter);
         
         //check if letter is in word
         int i;
-        for (i=0;i<6;i++)       //this seems to determine if a life is lost or not
+        for (i=0;i<length;i++)       //this seems to determine if a life is lost or not
         {
             //iterate over loop
             //compare letter to each letter in the loop
-            if (letter == word[i])
+            if (letter == answer[i])
             {
                 
                 //if letter is in word, print guess was correct
@@ -45,10 +126,14 @@ int main() {
             
                 //change blank to include the correct letter
                 blank[i] = letter;
-                word[i] = '_';
+                answer[i] = '_';
             
                 //print the blanks with guessed letter
-                printf("%c %c %c %c %c %c\n",blank[0],blank[1],blank[2],blank[3],blank[4],blank[5]);
+                for (r=0;r<length;r++)
+                {
+                    printf("%c ",blank[r]);
+                    
+                }
                 
                 //break program
                 break;
@@ -56,7 +141,7 @@ int main() {
         }
         
         //if letter wasn't in the work
-        if (i == 6)
+        if (i == length)
         {
             //print guess incorrect
             printf("Sorry, your guess was incorrect\n");
@@ -67,7 +152,7 @@ int main() {
         //condition to see if the game has been won
         //initialize counter variable
         counter = 0;
-        for (int j=0;j<6;j++)
+        for (int j=0;j<length;j++)
         {
             //iterate through blank loop to see if any blank spaces. If no blank spaces, user has won the game.
             //if statement to create a counter for the number of blank spaces. If above zero, can't exit the loop
@@ -88,13 +173,19 @@ int main() {
     while ((lives > 0) || (counter > 0));
     
 //**************************************************//
-    
+  
     //win conidtion
     if (lives == 0)
     {
         printf("Sorry, you lost the game!\n");
+        printf("The word was");
+        for (int i = 0; i < length; i++)
+        {
+            printf("%c",answer[i]);
+        }
     }
     else {
+        printf("\n");
         printf("You won the game!\n");
     }
     
