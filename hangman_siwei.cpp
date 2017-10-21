@@ -46,14 +46,34 @@ int main() {
 
 		}
 		
+		//Show for incorrect guess
+
 		if (correct == 0) {
 
 			printf("\nIncorrect guess!");
 			guess--;
 		}
 
-		
-	}
+		//If user has finished guessing the word
+		int finish = 0;
+		for (k = 0; k < 6; k++) {
+			if (word[k] == '_') {
+				finish++;
+			}
+		}
 
+		if (finish == 6) {
+			correct = 2;
+			break;
+		}
+
+
+	}
+	if (correct == 2) {						//Word is guessed correctly
+		printf("\nCongrats on guessing the word!");
+	}
+	else {
+		printf("\nYou are out of guesses!");	//Ran out of guesses
+	}
 	system("pause");
 }
